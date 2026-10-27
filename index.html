@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data:; connect-src https://aofmxsiqxtzlsvfhiueb.supabase.co; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Livo Keys</title>
+  <link rel="stylesheet" href="painel.css?v=1">
+</head>
+<body>
+  <main id="entrar" class="tela-login" hidden>
+    <form id="formLogin" class="cartao login">
+      <div class="marca">Livo <b>Keys</b></div>
+      <p class="sub">Painel de licenças do Livo Edit e do Livo Clips.</p>
+      <label for="loginEmail">E-mail</label>
+      <input id="loginEmail" type="email" autocomplete="username" required>
+      <label for="loginSenha">Senha</label>
+      <input id="loginSenha" type="password" autocomplete="current-password" required>
+      <div class="erro" id="loginErro" role="alert"></div>
+      <button type="submit" class="primario">Entrar</button>
+    </form>
+  </main>
+
+  <div id="app" hidden>
+    <header class="topo">
+      <div class="marca">Livo <b>Keys</b></div>
+      <nav class="abas" role="tablist">
+        <button data-aba="clientes" class="ativa" role="tab">Clientes</button>
+        <button data-aba="nova" role="tab">Nova key</button>
+        <button data-aba="resumo" role="tab">Resumo</button>
+        <button data-aba="historico" role="tab">Histórico</button>
+      </nav>
+      <div class="conta">
+        <span id="quem"></span>
+        <button id="btnSenha" class="discreto">Trocar senha</button>
+        <button id="btnSair" class="discreto">Sair</button>
+      </div>
+    </header>
+
+    <section id="aba-clientes" class="aba">
+      <form id="formBusca" class="barra">
+        <select id="buscaProduto" aria-label="Produto">
+          <option value="todos">Todos os produtos</option>
+          <option value="edit">Livo Edit</option>
+          <option value="clips">Livo Clips</option>
+        </select>
+        <input id="buscaTermo" placeholder="E-mail, key ou ID (vazio = últimas)" aria-label="Buscar">
+        <button type="submit" class="primario">Buscar</button>
+      </form>
+      <div id="resultado" class="lista"></div>
+    </section>
+
+    <section id="aba-nova" class="aba" hidden>
+      <form id="formNova" class="cartao estreito">
+        <h2>Criar key</h2>
+        <label>Produto</label>
+        <div class="escolha" id="novaProduto">
+          <label><input type="radio" name="produto" value="edit" checked> Livo Edit</label>
+          <label><input type="radio" name="produto" value="clips"> Livo Clips</label>
+        </div>
+        <label for="novaEmail">E-mail do cliente</label>
+        <input id="novaEmail" type="email" required>
+        <label>Plano</label>
+        <div class="escolha">
+          <label><input type="radio" name="plano" value="monthly" checked> Mensal (30 dias)</label>
+          <label><input type="radio" name="plano" value="annual"> Anual (365 dias)</label>
+        </div>
+        <label class="check"><input type="checkbox" id="novaEnviar" checked> Enviar a key por e-mail agora</label>
+        <div class="erro" id="novaErro" role="alert"></div>
+        <button type="submit" class="primario">Criar key</button>
+        <div id="novaResultado"></div>
+      </form>
+    </section>
+
+    <section id="aba-resumo" class="aba" hidden>
+      <div id="resumo" class="grade"></div>
+    </section>
+
+    <section id="aba-historico" class="aba" hidden>
+      <div id="historico" class="tabela"></div>
+    </section>
+  </div>
+
+  <div id="modal" class="modal" hidden>
+    <div class="cartao modal-caixa" role="dialog" aria-modal="true">
+      <div id="modalCorpo"></div>
+    </div>
+  </div>
+  <div id="aviso" class="aviso" role="status" hidden></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" integrity="sha384-GFr3yTh5lJznCbZfpTtXnwboFsxqtTQoeTZCRHhE0579KrRmlCzen5AA8ohaB5ug" crossorigin="anonymous"></script>
+  <script src="painel.js?v=1"></script>
+</body>
+</html>
